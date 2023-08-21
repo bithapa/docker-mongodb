@@ -66,14 +66,104 @@ Now you can interact with the database.
 
 # MongoDB: Database Interaction
 
-Use following commands to interact with the database:
+Within the MongoShell, you can use following commands:
 
-- **`use <database>`**: Switches to the specified database.
+### database
+- **`use <database>`**: Creates/Switches to the specified database.
 - **`show dbs`**: Lists all available databases.
+- **`db.stats()`**: Provides statistics about the current database.
+- **`db.dropDatabase()`**: Deletes the current database.
+- 
+### collection
 - **`db.createCollection()`**: Creates a collection in the current database.
 - **`show collections`**: Lists all collections in the current database.
 - **`db.collection.stats()`**: Provides statistics about the current collection.
-- **`db.stats()`**: Provides statistics about the current database.
-- **`db.dropDatabase()`**: Deletes the current database.
 - **`db.collection.drop()`**: Deletes the specified collection.
+- **`db.collection.count()`**: counts the documents in collection
+- **`db.collection.find()`**: shows all the documents
+
+### insert
+- **`db.collection.insert()`**: inserts the document (json object passed as parameter) into specified `collection`
+- **`db.collection.insrtMany()`**: inserts multiple documents
+
+### find
+
+- **`db.collection.find({<field value(s)>})`**: finds the document that matches the provided field values
+```
+btDB> db.student.find({firstName:"Sophia"},{firstName: 1, favoriteSubjects: 1})
+[
+  {
+    _id: ObjectId("64e3b2ad38d56c69f4f69607"),
+    firstName: 'Sophia',
+    favoriteSubjects: [ 'history', 'anthropology', 'archaeology' ]
+  }
+]
+```
+- **`db.collection.find({field value(s)},{projection})`**: finds the document that matches the criteria, and displays in specified projection
+*To exclude any field, use -1.*
+
+### update
+Updates are done by providing the unique keywords for type of updates, along with ObjectId, and update field/value pair.
+- **`db.collection.update({_id: ObjectId("<id>")}, {$<keyword>: {<update parameters & values>}})`**
+
+Following are the list of keywords and their corresponding update operations:
+- **`$set`** finds the match and updates 
+- **`$unset`** removes/deletes the specified field
+- **`$inc: {<parameter>: N}`** increments the parameter (type **double**) by `N`
+
+To **update the elements of an array field use `push` & `pull`:**
+- **`$push: {arrFieldName: fieldVal}`** inserts new value in the `arrFieldName`
+- **`$pull: {arrFieldName: fieldVal}`** removes `fieldVal` from the `arrfieldName` 
+
+### delete Document
+
+- **`db.collection.deleteOne(_id: ObjectId("<id>"))`** deletes the object of given `_id`
+- **`db.collection.deleteOne({})`** only deletes one doc object
+- **`db.collection.deleteMany({field: value})`** deletes all the object matching given field/value pair
+
+---
+
+# Mongo Document Data types
+MongoDB Collection documents uses BSON data types. BSON (Binary JSON) is a binary-encoded serialization format used to store and exchange data in a lightweight and efficient manner.
+
+1. **Double**: Represents a double-precision floating-point number.
+
+2. **String**: Represents a sequence of UTF-8 encoded characters.
+
+3. **Object**: Represents an embedded document within a BSON document. This is similar to a JSON object.
+
+4. **Array**: Represents an ordered list of values, similar to a JSON array.
+
+5. **Binary Data**: Represents binary data, such as images or files.
+
+6. **Boolean**: Represents a boolean value (true or false).
+
+7. **DateTime**: Represents a 64-bit integer, typically representing the number of milliseconds since the Unix epoch.
+
+8. **Null**: Represents a null value.
+
+9. **Regular Expression**: Represents a regular expression pattern and its options.
+
+10. **JavaScript Code**: Represents JavaScript code or a script.
+
+11. **Symbol**: Represents a symbol, which is a unique identifier.
+
+12. **JavaScript Code with Scope**: Represents JavaScript code with an associated scope.
+
+13. **32-bit Integer**: Represents a 32-bit integer.
+
+14. **Timestamp**: Represents a special BSON data type used for timestamps.
+
+15. **64-bit Integer**: Represents a 64-bit integer.
+
+16. **Decimal128**: Represents a 128-bit decimal floating-point value.
+
+17. **Min Key**: Represents the smallest possible key value.
+
+18. **Max Key**: Represents the largest possible key value.
+
+
+### Creating document
+
+First define document structure.
 
