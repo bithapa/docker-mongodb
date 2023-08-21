@@ -27,7 +27,7 @@ Don't need to specify default file name
 
 - `docker cpmpose -f up`
 
-[-f flag is used to specify the path to a Docker Compose configuration file]
+_-f flag is used to specify the path to a Docker Compose configuration file_
 
 ### `docker compose down`
 
@@ -51,20 +51,20 @@ lists and displays information about the currently running Docker containers on 
 
 ---
 
-# Connecting to MongoDB
+## Connecting to MongoDB
 Using Bash shell (Mongo Shell) inside the docker container to interact with database.
 
 ### `docker exec -it <coontainer-id> bash`
 
 to run an interactive bash shell inside the docker container; will open up a bash shell (TTY) inside the provided container.
 
-### `mongosh mongodb://localhost:<container-port> -u <db-username> -p <db-password>`
+#### `mongosh mongodb://localhost:<container-port> -u <db-username> -p <db-password>`
 
 connects to a MongoDB server inside the MongoDB Shell using the username and password specified. 
 
 Now you can interact with the database.
 
-# MongoDB: Database Interaction
+## MongoDB: Database Interaction
 
 Within the MongoShell, you can use following commands:
 
@@ -123,7 +123,7 @@ To **update the elements of an array field use `push` & `pull`:**
 
 ---
 
-# Mongo Document Data types
+## Mongo Document Data types
 MongoDB Collection documents uses BSON data types. BSON (Binary JSON) is a binary-encoded serialization format used to store and exchange data in a lightweight and efficient manner.
 
 1. **Double**: Represents a double-precision floating-point number.
@@ -162,8 +162,4 @@ MongoDB Collection documents uses BSON data types. BSON (Binary JSON) is a binar
 
 18. **Max Key**: Represents the largest possible key value.
 
-
-### Creating document
-
-First define document structure.
 
