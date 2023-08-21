@@ -1,8 +1,8 @@
-This is my first dive into MongoDB with Docker
+> This is my first dive into MongoDB with Docker
 
-## `docker-compose.yaml`
+## Docker Compose
 
-configuration file used with *Docker Compose*; used to define and manage multi-container Docker applications.
+`docker-compose.yaml` is a configuration file used with *Docker Compose*; used to define and manage multi-container Docker applications.
 
 `docker-compose.yaml` defines a set of services, networks, volumes, and other configurations required for the application. 
 
@@ -15,7 +15,7 @@ configuration file used with *Docker Compose*; used to define and manage multi-c
 4. **Other Configurations:** The docker-compose.yaml file can also include other configurations like environment variables, restart policies, build instructions (for building custom images), and more.
 
 # Docker setup
-Following are the list of commands to create docker containers. See [`docker-compose.yaml`]() for mongodb docker configuration.
+Following are the list of commands to create docker containers. See [`docker-compose.yaml`](https://github.com/bithapa/docker-mongodb/blob/main/docker-compose.yaml) file for mongodb docker configuration.
 
 ### `docker-compose -f docker-compose.yaml up`
 
@@ -49,6 +49,8 @@ starts the containers that were previously stopped using the docker compose stop
 
 lists and displays information about the currently running Docker containers on your system.
 
+---
+
 # Connecting to MongoDB
 Using Bash shell (Mongo Shell) inside the docker container to interact with database.
 
@@ -58,4 +60,20 @@ to run an interactive bash shell inside the docker container; will open up a bas
 
 ### `mongosh mongodb://localhost:<container-port> -u <db-username> -p <db-password>`
 
-connects to a MongoDB server inside the MongoDB Shell using the username and password specified
+connects to a MongoDB server inside the MongoDB Shell using the username and password specified. 
+
+Now you can interact with the database.
+
+# MongoDB: Database Interaction
+
+Use following commands to interact with the database:
+
+- **`use <database>`**: Switches to the specified database.
+- **`show dbs`**: Lists all available databases.
+- **`db.createCollection()`**: Creates a collection in the current database.
+- **`show collections`**: Lists all collections in the current database.
+- **`db.collection.stats()`**: Provides statistics about the current collection.
+- **`db.stats()`**: Provides statistics about the current database.
+- **`db.dropDatabase()`**: Deletes the current database.
+- **`db.collection.drop()`**: Deletes the specified collection.
+
