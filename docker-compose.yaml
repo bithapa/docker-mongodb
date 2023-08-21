@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+    mongodb:       # container 1
+        image: mongo    # Specifies the Docker image to use, which is the official MongoDB image
+        container_name: mongodb
+        # Map port 27017 from the host to port 27017 in the container (MongoDB default port)
+        ports:
+            - 27017:27017   
+        # Create a named volume named "data" and mounts it to the /data directory within the container. This is used to persist data between container restarts
+        volumes:
+            - data:/data  
+        # Set environment variables for MongoDB initialization, define the root username and password for the MongoDB instance
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=admin
+            - MONGO_INITDB_ROOT_PASSWORD=pass
+    mongo-express: # container 2
+        image: mongo-express
+        container_name: mongo-express
+        restart: always # Specifies that the container should always restart if it stops
+        ports:
+            - 8081:8081
+        environment:
+            - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+            - ME_CONFIG_MONGODB_ADMINPASSWORD=pass
+            - ME_CONFIG_MONGODB_SERVER=mongodb
+volumes:
+    data: {}    # This volume will be used to store MongoDB data persistently
+    
+#Creates a custom network named "mongodb_network." Both services ("mongodb" and "mongo-express") will be attached to this network, allowing them to communicate with each other using their service names as hostnames.
+networks:
+    default:
+        name: mongodb_network
