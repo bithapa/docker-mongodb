@@ -54,11 +54,11 @@ lists and displays information about the currently running Docker containers on 
 ## Connecting to MongoDB
 Using Bash shell (Mongo Shell) inside the docker container to interact with database.
 
-### `docker exec -it <coontainer-id> bash`
+### `docker exec -it <mongo-coontainer-id> bash`
 
-to run an interactive bash shell inside the docker container; will open up a bash shell (TTY) inside the provided container.
+to run an interactive bash shell inside the docker container; will open up a bash shell (TTY)
 
-#### `mongosh mongodb://localhost:<container-port> -u <db-username> -p <db-password>`
+#### `mongosh mongodb://localhost:<mongo-container-port> -u <db-username> -p <db-password>`
 
 connects to a MongoDB server inside the MongoDB Shell using the username and password specified. 
 
